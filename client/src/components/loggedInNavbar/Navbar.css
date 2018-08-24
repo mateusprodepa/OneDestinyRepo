@@ -1,0 +1,60 @@
+.UserPageNavbar {
+  background-color: #1F2250;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 4px; */
+}
+
+.UserPageNavbar > div {
+  width: 1600px;
+  display: flex;
+}
+
+.SearchBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SearchBar input {
+  width: 500px;
+  padding: 4px;
+  border: none;
+  margin-left: 20px;
+  background-color: #8581B3;
+  font-family: Montserrat;
+  color: #fefefe;
+}
+
+.SearchBar input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #f5f5f5;
+    opacity: 1; /* Firefox */
+}
+
+.SearchBar input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #f5f5f5;
+}
+
+.SearchBar input::-ms-input-placeholder { /* Microsoft Edge */
+    color: #f5f5f5;
+}
+
+/* .UserPageNavbar .navbar__brand {
+  margin-left: 140px;
+} */
+
+.UserPageNavbar .navbar__brand img {
+  padding: 4px;
+  width: 42px;
+}
+
+.UserPageNavbar .navbar__brand span {
+  font-size: 1.4rem;
+}
+
+@media screen and (max-width: 1899px) {
+  .UserPageNavbar > div {
+    width: 80%;
+  }
+}

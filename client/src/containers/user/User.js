@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import { userRequest } from '../../utils/utils';
 
-import { endpoints, tmp } from '../../config/config';
+import { endpoints, background_images, tmp } from '../../config/config';
 
 import * as userActions from '../../actions/user';
 
@@ -29,21 +29,69 @@ class UserBlock extends Component {
   }
 
   renderUserProfileImage = () => {
-
     const userImg = this.state.user.Usuario_Imagem ?
                     this.state.user.Usuario_Imagem :
                     tmp.USER_IMG
 
     return (
-      <img alt="userImage" className="UserProfileImage" src={ userImg } />
+      <div>
+        <img
+          alt="userImage"
+          className="UserProfileImage"
+          src={ userImg } />
+      </div>
     )
 
   }
 
-  renderUserBlock = () => {
-    const self = this;
+  renderTags = () => {
+    const { user } = this.state;
+    const colors = [ '#F74D4D', '#4D994D', '#4D4DF7' ]
+    let tags = [];
+
+
+    for(var x in user) {
+      const s = user[x];
+
+      if(s !== "") {
+        if(typeof s !== 'number') {
+          if(x.includes('Cenario') && !x.includes('Non')) {
+            tags.push(s);
+          }
+        }
+      }
+    }
+
     return (
-      <div className="UserProfileBlock">
+      <div className="Tags">
+        {tags.map((tag, i) =>
+          <div
+            style={{
+              backgroundColor: colors[Math.floor(Math.random() * colors.length)]
+            }}
+            key={i}
+            className="Tag">
+            { tag }
+          </div>)}
+      </div>
+    )
+  }
+
+  renderUserBlock = () => {
+
+    const { username } = this.state.user;
+
+    const self = this;
+
+    const bgImage = {
+      background: `url(${background_images.snow})`,
+      backgroundAttachment: 'fixed',
+      backgroundSize: '100% 100%',
+      backgroundRepeat: 'no-repeat'
+    }
+
+    return (
+      <div className="UserProfileBlock" style={bgImage}>
         <div className="UserProfileWrapper">
           <div className="UserProfileFlex">
 
@@ -52,7 +100,8 @@ class UserBlock extends Component {
             </div>
 
             <div className="UserBlockName">
-              <h3>{ this.state.user.username }</h3>
+              <h3>{ username }</h3>
+              { self.renderTags() }
             </div>
 
           </div>
